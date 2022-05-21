@@ -21,7 +21,7 @@ const Profile = () => {
 
   const fetchDetails = () => {
     axios
-      .get("https://languid-jewel-production.up.railway.app/user/1", {
+      .get(`https://languid-jewel-production.up.railway.app/user/${localStorage.getItem('email')}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },

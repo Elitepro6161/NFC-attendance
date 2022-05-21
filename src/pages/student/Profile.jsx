@@ -21,7 +21,7 @@ const StudentProfile = () => {
 
   const fetchDetails = () => {
     axios
-      .get("https://languid-jewel-production.up.railway.app/user/3", {
+      .get(`https://languid-jewel-production.up.railway.app/user/${localStorage.getItem('email')}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },

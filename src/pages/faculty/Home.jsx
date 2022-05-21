@@ -30,6 +30,7 @@ const Home = () => {
             }).catch(err => {
                 console.log(err)
                 setScan(false)
+                setModal(true)
             })
     }
 

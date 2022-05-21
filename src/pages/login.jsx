@@ -25,6 +25,7 @@ const Login = () => {
       localStorage.setItem("token", res.data.access_token);
       let role = res?.data?.role
       localStorage.setItem("role", role);
+      localStorage.setItem("email",email)
       if(role.includes('teach'))
       {
           navigate('/faculty')

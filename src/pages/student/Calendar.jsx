@@ -1,18 +1,42 @@
+import axios from 'axios';
 import React, { useState, useEffect} from 'react'
 import Wrapper from '../../components/Wrapper'
 
 const StudentCalendar = () => {
-    const [date,setDate] = useState('');
+    const [date,setDate] = useState(new Date().toISOString().split('T')[0]);
     const [data,setData] = useState({
         recent: [],
         loading: true,
     });
-    
-    console.log(date)
+
+
+    useEffect(() => {
+        fetchDate()
+    },[date])
+
+  console.log(date)
+  
+    const fetchDate = async() => {
+        console.log("date meopw",date)
+        axios.get(`https://languid-jewel-production.up.railway.app/attend/{str}?name=gow&date=${date}`,{
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+        }}).then((res) => {
+            console.log(res.data)
+            setData({
+                recent: res.data,
+                loading:false
+            })
+        })
+        .catch((error) => console.log(error))
+    }
+
+    // fetchDate()
     const InputDate = () => (
         <>
         <div className="flex">
-            <input datepicker className='p-4 mx-auto bg-blue-100/50 rounded ' type="date" value={date} onChange={(e) => setDate(e.target.value) } />
+            <input datepicker className='p-4 mx-auto bg-blue-100/50 rounded ' type="date" value={date}
+            onChange={(e) => setDate(e.target.value)} />
         </div>
         </>
     )
@@ -34,7 +58,7 @@ const StudentCalendar = () => {
                 </tr>
             </thead>
             <tbody>
-                {data.recent.map((item,index) => (
+                {data?.recent?.map((item,index) => (
                 <tr key={index} className="bg-white border-b  hover:bg-gray-50">
                     
                     <td className="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 ">

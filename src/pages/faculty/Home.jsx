@@ -1,39 +1,67 @@
-import React,{ useState } from 'react'
+import React,{ useState,useCallback,useEffect } from 'react'
 import Wrapper from '../../components/Wrapper'
 
 import axios from 'axios'
+import NFC from 'nfc-react-web'
 const Home = () => {
     const [scan,setScan] = useState(false)
     const [modal,setModal] = useState(false)
-
-    const handleSubmit = async() => {
-        await setScan(true)
-        setTimeout(() => {
-            updateScan()
-        }, 2000);
-    }
-
-    const updateScan = () => {
-        
-        axios.post('https://languid-jewel-production.up.railway.app/attend/',{
-            "name": "gow",
-            "roll": "123",
-            "status_now": true
-          },{
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+    const [hehe,setHehe] = useState(false)
+    const ScanMode = useCallback(async() => {
+        if('NDEFReader' in window){
+            try {
+                const ndf = new window.NDFReader();
+                await ndf.scan()
+                ndf.onreadingerror = () => {
+                    console.log("welp no")
+                }
+                ndef.onreading = event => {
+                    console.log("msg",event)
+                    setHehe(event)
+                }
             }
-          }).then(res => {
-            console.log(res)
-            setScan(false)
-            setModal(true)
-            }).catch(err => {
-                console.log(err)
-                setScan(false)
-                setModal(true)
-            })
-    }
+            catch(error){
+                console.log(error)
+            }
+        }
+    })
 
+    useEffect(() => {
+        ScanMode()
+        return () => {
+            ScanMode();
+        }
+    },[])
+    // const handleSubmit = async() => {
+    //     await setScan(true)
+    //     setTimeout(() => {
+    //         updateScan()
+    //     }, 2000);
+    // }
+
+    // const updateScan = () => {
+        
+    //     axios.post('https://languid-jewel-production.up.railway.app/attend/',{
+    //         "name": "niku",
+    //         "roll": "12412535",
+    //         "status_now": true
+    //       },{
+    //         headers: {
+    //             'Authorization': 'Bearer ' + localStorage.getItem('token')
+    //         }
+    //       }).then(res => {
+    //         console.log(res)
+    //         setScan(false)
+    //         setModal(true)
+    //         }).catch(err => {
+    //             console.log(err)
+    //             setScan(false)
+    //             setModal(true)
+    //         })
+    // }
+    const NFCUpdate = () => {
+
+    }
 
     const Modal = () => (
         <div id="defaultModal" tabindex="-1" aria-hidden="true" className="overflow-y-auto text-black overflow-x-hidden fixed top-[15%] w-full md:inset-0 h-modal md:h-full bg-gray-500/20">
@@ -68,8 +96,9 @@ const Home = () => {
         <>
         <Wrapper>
             <div className='text-2xl w-full h-screen mx-auto text-center flex justify-center items-center'>
-                  
-  <button onClick={() => handleSubmit()} className="relative z-0 -mt-36">
+
+                
+  <button onClick={() => console.log("hehe") } className="relative z-0 -mt-36">
   <svg className={`h-96 w-full ${scan ? 'animate-pulse' : "" } `} viewBox="0 0 24 24">
                     <path fill="none" d="M0 0h24v24H0z">
                     </path>

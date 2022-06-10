@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { HomeIcon, CalendarIcon, ProfileIcon, NfcIcon } from "../Assets";
+import { HomeIcon, CalendarIcon, ProfileIcon, NfcIcon,RecentIcon } from "../Assets";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ const NavBar = () => {
       name: "Recent",
       path: "/faculty/recent",
       icon: (
-        <CalendarIcon
+        <RecentIcon
           props={{
             className: "h-6 w-6 text-blue-800",
           }}
@@ -80,18 +80,18 @@ const NavBar = () => {
   const IconBox = ({ path, icon, name }) => (
     <button
       onClick={() => navigate(path)}
-      className={`w-full focus:text-blue-500 hover:text-blue-500 justify-center inline-block text-center pt-2 pb-1 ${
-        location.pathname === path ? "bg-blue-200" : ""
+      className={`w-full focus:text-blue-500 hover:text-blue-500 justify-center inline-block text-center pt-4 pb-4 ${
+        location.pathname === path ? "bg-[#404040]" : ""
       }`}
     >
       <div className="flex items-center justify-center">{icon}</div>
-      <span className="text-sm text-neutral-600">{name}</span>
+      {/* <span className="text-sm text-neutral-600">{name}</span> */}
     </button>
   );
   const Component = () => (
     <section
       id="bottom-navigation"
-      className="block fixed inset-x-0 bottom-0 z-10 bg-white shadow"
+      className="block h-14 fixed inset-x-0 bottom-0 z-10 bg-black shadow"
     >
       <div id="tabs" className="flex justify-between">
         {localStorage.getItem("role") === "student"

@@ -2,20 +2,29 @@ import React from "react";
 
 function ProfileIcon({ props }) {
   return (
-    <svg
+  <svg
       xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
       fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      className="h-6 w-6"
       viewBox="0 0 24 24"
-    {...props}
     >
       <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+        fill="#fff"
+        fillRule="evenodd"
+        d="M17 9A5 5 0 117 9a5 5 0 0110 0zm-2.5 0a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+        clipRule="evenodd"
       ></path>
+      <path stroke="#fff" strokeWidth="3" d="M5 22c0-7 13.5-7.5 13.5 0"></path>
+      <rect
+        width="21.5"
+        height="21.5"
+        x="1.25"
+        y="1.25"
+        stroke="#fff"
+        strokeWidth="2.5"
+        rx="3.75"
+      ></rect>
     </svg>
   );
 }

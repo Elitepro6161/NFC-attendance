@@ -1,23 +1,21 @@
 import React from "react";
 
-function HomeIcon({props}) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      className="h-6 w-6"
-      viewBox="0 0 24 24"
+const HomeIcon = (props) => (
+  <svg
+    width={24}
+    height={24}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
     {...props}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-      ></path>
-    </svg>
-  );
-}
+  >
+    <path
+      d="M22 20.025v-7.73c0-.538-.111-1.07-.326-1.564a3.951 3.951 0 0 0-.927-1.309L13.374 2.54A2.013 2.013 0 0 0 12 2c-.511 0-1.003.193-1.374.54L3.253 9.422a3.95 3.95 0 0 0-.927 1.309A3.909 3.909 0 0 0 2 12.295v7.73c0 .524.21 1.026.586 1.396.375.37.884.579 1.414.579h16c.53 0 1.04-.208 1.414-.579.375-.37.586-.872.586-1.396Z"
+      stroke="#fff"
+      strokeWidth={3}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
 
 export default HomeIcon;

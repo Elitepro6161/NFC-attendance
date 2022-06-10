@@ -60,7 +60,7 @@ const Profile = () => {
     </>
   );
   const ProfileContent = () => (
-    <form className="w-full mx-auto py-4 max-w-sm">
+    <form className="w-4/5 mx-auto py-4 max-w-sm">
       <div className="mx-auto  py-12 p-4">
         <InputBox text={"Name"} value={data.recent.name} />
 
@@ -71,9 +71,9 @@ const Profile = () => {
           localStorage.clear();
           navigate("/");
         }}
-        className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="bg-black w-full hover:bg-[#404040] text-white font-semibold py-3 px-3 rounded focus:outline-none focus:shadow-outline"
       >
-        Logout
+        LOG OUT
       </button>
     </form>
   );

@@ -35,16 +35,16 @@ const StudentCalendar = () => {
     const InputDate = () => (
         <>
         <div className="flex">
-            <input datepicker className='p-4 mx-auto bg-blue-100/50 rounded ' type="date" value={date}
+            <input datepicker className='p-4 mx-auto mb-6 bg-white rounded-lg ' type="date" value={date}
             onChange={(e) => setDate(e.target.value)} />
         </div>
         </>
     )
 
     const Table = () => (
-        <div className="relative w-full mx-auto lg:w-3/4 overflow-x-auto shadow-sm sm:rounded-lg">
+        <div className="relative w-5/6 mx-auto lg:w-3/4 overflow-x-auto shadow-sm sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <thead className="text-lg text-black bg-[#D9D9D9] tracking-wide">
                 <tr>
                    
                   

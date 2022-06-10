@@ -3,7 +3,7 @@ import HomeIcon from "./HomeIcon";
 import ProfileIcon from "./ProfileIcon";
 import SettingIcon from "./SettingIcon";
 import NfcIcon from "./NfcIcon";
-
+import RecentIcon from "./RecentIcon";
 
 
 export {
@@ -11,5 +11,6 @@ export {
     HomeIcon,
     ProfileIcon,
     SettingIcon,
-    NfcIcon
+    NfcIcon,
+    RecentIcon
 } 

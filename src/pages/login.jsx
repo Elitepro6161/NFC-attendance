@@ -36,7 +36,7 @@ const Login = () => {
       }
     }).catch(err => {
       console.log(err);
-      alert("you suck")
+      alert("you sus")
     });
 
   
@@ -44,12 +44,12 @@ const Login = () => {
 
   return (
     <>
-      <section className="text-blue-700">
+      <section className="text-black">
         <div className="container mx-auto pt-12 items-center px-5 py-12 lg:px-20">
             
-          <div className="flex flex-col w-full max-w-md p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
+      <h2 class="mt-6 ml-8 text-2xl font-medium text-left text-black">Sign in</h2>
+          <div className="flex flex-col w-5/6 max-w-md p-8 mx-auto my-8 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
           <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      <h2 class="mt-6 text-3xl font-extrabold text-center text-neutral-600">Sign in to your account</h2>
     </div>
             <div className="mt-8">
               <div className="mt-6">
@@ -57,7 +57,7 @@ const Login = () => {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-neutral-600"
+                      className="block text-base font-medium text-black"
                     >
                       {" "}
                       Email address{" "}
@@ -74,14 +74,14 @@ const Login = () => {
                         autoComplete="email"
                         required
                         placeholder="Your Email"
-                        className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                        className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-black bg-gray-50 focus:outline-none focus:border-black focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                       />
                     </div>
                   </div>
                   <div className="space-y-1">
                     <label
                       htmlFor="password"
-                      className="block text-sm font-medium text-neutral-600"
+                      className="block text-base font-medium text-black"
                     >
                       {" "}
                       Password{" "}
@@ -98,7 +98,7 @@ const Login = () => {
                         autoComplete="current-password"
                         required
                         placeholder="Your Password"
-                        className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                        className="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-black bg-gray-50 focus:outline-none focus:border-black focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                       />
                     </div>
                   </div>
@@ -109,11 +109,11 @@ const Login = () => {
                         name="remember-me"
                         type="checkbox"
                         placeholder="Your password"
-                        className="w-4 h-4 text-blue-600 border-gray-200 rounded focus:ring-blue-500"
+                        className="w-4 h-4 mb-4 text-black border-black focus:ring-black"
                       />
                       <label
                         htmlFor="remember-me"
-                        className="block ml-2 text-sm text-neutral-600"
+                        className="block ml-2 mb-4 text-xs text-neutral-600"
                       >
                         {" "}
                         Remember me{" "}
@@ -124,9 +124,9 @@ const Login = () => {
                   <div>
                     <button
                       type="submit"
-                      className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      className="flex items-center justify-center w-full bg-black w-full hover:bg-[#404040] text-white font-semibold py-4 px-3 rounded focus:outline-none focus:shadow-outline"
                     >
-                      Sign in
+                      SIGN IN
                     </button>
                   </div>
                 </form>

@@ -4,6 +4,8 @@ import ProfileIcon from "./ProfileIcon";
 import SettingIcon from "./SettingIcon";
 import NfcIcon from "./NfcIcon";
 import RecentIcon from "./RecentIcon";
+import PendingIcon from "./PendingIcon";
+import TickIcon from "./TickIcon";
 
 
 export {
@@ -12,5 +14,7 @@ export {
     ProfileIcon,
     SettingIcon,
     NfcIcon,
-    RecentIcon
+    RecentIcon,
+    PendingIcon,
+    TickIcon
 } 

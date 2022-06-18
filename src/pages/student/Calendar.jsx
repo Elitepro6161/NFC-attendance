@@ -18,7 +18,7 @@ const StudentCalendar = () => {
   
     const fetchDate = async() => {
         console.log("date meopw",date)
-        axios.get(`https://languid-jewel-production.up.railway.app/attend/{str}?name=gow&date=${date}`,{
+        axios.get(`https://languid-jewel-production.up.railway.app/attend/{str}?name=${localStorage.getItem("username")}&date=${date}`,{
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token"),
         }}).then((res) => {

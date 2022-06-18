@@ -71,7 +71,7 @@ const Profile = () => {
           localStorage.clear();
           navigate("/");
         }}
-        className="bg-black w-full hover:bg-[#404040] text-white font-semibold py-3 px-3 rounded focus:outline-none focus:shadow-outline"
+        className="bg-black w-full hover:bg-[#404040] text-white font-semibold py-4 px-3 rounded focus:outline-none focus:shadow-outline"
       >
         LOG OUT
       </button>

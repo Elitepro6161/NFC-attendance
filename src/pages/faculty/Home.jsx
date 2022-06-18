@@ -7,58 +7,58 @@ const Home = () => {
     const [scan,setScan] = useState(false)
     const [modal,setModal] = useState(false)
     const [hehe,setHehe] = useState(false)
-    const ScanMode = useCallback(async() => {
-        if('NDEFReader' in window){
-            try {
-                const ndf = new window.NDFReader();
-                await ndf.scan()
-                ndf.onreadingerror = () => {
-                    console.log("welp no")
-                }
-                ndef.onreading = event => {
-                    console.log("msg",event)
-                    setHehe(event)
-                }
-            }
-            catch(error){
-                console.log(error)
-            }
-        }
-    })
-
-    useEffect(() => {
-        ScanMode()
-        return () => {
-            ScanMode();
-        }
-    },[])
-    // const handleSubmit = async() => {
-    //     await setScan(true)
-    //     setTimeout(() => {
-    //         updateScan()
-    //     }, 2000);
-    // }
-
-    // const updateScan = () => {
-        
-    //     axios.post('https://languid-jewel-production.up.railway.app/attend/',{
-    //         "name": "niku",
-    //         "roll": "12412535",
-    //         "status_now": true
-    //       },{
-    //         headers: {
-    //             'Authorization': 'Bearer ' + localStorage.getItem('token')
+    // const ScanMode = useCallback(async() => {
+    //     if('NDEFReader' in window){
+    //         try {
+    //             const ndf = new window.NDFReader();
+    //             await ndf.scan()
+    //             ndf.onreadingerror = () => {
+    //                 console.log("welp no")
+    //             }
+    //             ndef.onreading = event => {
+    //                 console.log("msg",event)
+    //                 setHehe(event)
+    //             }
     //         }
-    //       }).then(res => {
-    //         console.log(res)
-    //         setScan(false)
-    //         setModal(true)
-    //         }).catch(err => {
-    //             console.log(err)
-    //             setScan(false)
-    //             setModal(true)
-    //         })
-    // }
+    //         catch(error){
+    //             console.log(error)
+    //         }
+    //     }
+    // })
+
+    // useEffect(() => {
+    //     ScanMode()
+    //     return () => {
+    //         ScanMode();
+    //     }
+    // },[])
+    const handleSubmit = async() => {
+        await setScan(true)
+        setTimeout(() => {
+            updateScan()
+        }, 2000);
+    }
+
+    const updateScan = () => {
+        
+        axios.post('https://languid-jewel-production.up.railway.app/attend/',{
+            "name": "niku",
+            "roll": "12412535",
+            "status_now": true
+          },{
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+          }).then(res => {
+            console.log(res)
+            setScan(false)
+            setModal(true)
+            }).catch(err => {
+                console.log(err)
+                setScan(false)
+                setModal(true)
+            })
+    }
     const NFCUpdate = () => {
 
     }
@@ -98,7 +98,7 @@ const Home = () => {
             <div className='text-2xl w-full h-screen mx-auto text-center flex justify-center items-center'>
 
                 
-  <button onClick={() => console.log("hehe") } className="relative z-0 -mt-36">
+  <button onClick={() => handleSubmit() } className="relative z-0 -mt-36">
   <svg className={`h-96 w-full ${scan ? 'animate-pulse' : "" } `} viewBox="0 0 24 24">
                     <path fill="none" d="M0 0h24v24H0z">
                     </path>
@@ -111,14 +111,6 @@ const Home = () => {
     </div>
        
   </button>
-       
-               
-              
-             
-               
-                      
-              
-
             </div>
            {modal &&  <div className='mx-auto'>
             <Modal/>

@@ -37,7 +37,7 @@ const Recent = () => {
     const Table = () => (
         <div className="relative w-5/6 mx-auto lg:w-3/4 overflow-x-auto shadow-sm sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500">
-            <thead className="text-lg text-black bg-[#D9D9D9] tracking-wide font-light">
+            <thead className="text-lg text-black bg-[#D9D9D9] tracking-wide">
                 <tr>
                     {/* <th scope="col" class="px-6 py-3">
                         Name 

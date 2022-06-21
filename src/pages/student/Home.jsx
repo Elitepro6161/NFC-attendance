@@ -57,8 +57,8 @@ const StudentHome = () => {
             <div className='m-auto mt-10 w-5/6 max-w-lg h-auto p-8 rounded-2xl bg-white'>
             <div className='text-xl text-left flex items-center p-2 font-light text-black'>
               <span className="mr-4">
-                  {recent ? <PendingIcon/> : <TickIcon/> }
-              </span>Attendance {recent ? 'Pending' : 'Success'}</div>
+                  {!recent ? <PendingIcon/> : <TickIcon/> }
+              </span>Attendance {!recent ? 'Pending' : 'Success'}</div>
                 <div className='text-sm font-medium text-left m-6' >
                 Name: {data.recent.name}
                 <br />

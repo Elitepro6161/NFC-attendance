@@ -7,9 +7,9 @@ const StudentHome = () => {
     recent: [],
     loading: true,
   });
-  const [recent,setRecent]=useState();
+  const [recent,setRecent]=useState(false);
   const [date,setDate] = useState(new Date().toISOString().split('T')[0]);
-
+  
   useEffect(() => {
     fetchDetails();
     return () => {
@@ -17,13 +17,12 @@ const StudentHome = () => {
     };
   }, []);
   const fetchDate = async() => {
-    console.log("date meopw",date)
     await axios.get(`https://languid-jewel-production.up.railway.app/attend/{str}?name=${localStorage.getItem("username")}&date=${date}`,{
         headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
     }}).then(async(res) => {
-        console.log(res.data)
-        await data?.recent?.map((item,index)=>console.log(item))
+      console.log(res.data[0]?.status_now)
+      setRecent(res.data[0]?.status_now)
     })
     .catch((error) => console.log(error))
 }
@@ -37,11 +36,12 @@ const StudentHome = () => {
       .then(async(res) => {
         await localStorage.setItem("username",res?.data?.name)
         console.log(res);
-        
+      
         await setData({
           recent: res.data,
           loading: false,
         });
+        await fetchDate()
       })
       .catch((err) => {
         console.log(err);
@@ -57,8 +57,8 @@ const StudentHome = () => {
             <div className='m-auto mt-10 w-5/6 max-w-lg h-auto p-8 rounded-2xl bg-white'>
             <div className='text-xl text-left flex items-center p-2 font-light text-black'>
               <span className="mr-4">
-                  <PendingIcon></PendingIcon>
-              </span>Attendance {data.recent.status_now ? 'Sucess' : 'Pending'}</div>
+                  {recent ? <PendingIcon/> : <TickIcon/> }
+              </span>Attendance {recent ? 'Pending' : 'Success'}</div>
                 <div className='text-sm font-medium text-left m-6' >
                 Name: {data.recent.name}
                 <br />
@@ -66,9 +66,9 @@ const StudentHome = () => {
                 <br />
                 Date: {date}
                 </div>
-                <button className="bg-black w-auto text-sm hover:bg-[#404040] text-white font-semibold p-4 rounded focus:outline-none focus:shadow-outline">
+                {/* <button className="bg-black w-auto text-sm hover:bg-[#404040] text-white font-semibold p-4 rounded focus:outline-none focus:shadow-outline">
                      DOWNLOAD ATTENDANCE
-                </button>
+                </button> */}
             </div>
         </div>
         </Wrapper>

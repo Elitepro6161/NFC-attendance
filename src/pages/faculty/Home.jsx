@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable no-unused-vars */
 import React,{ useState,useCallback,useEffect } from 'react'
 import Wrapper from '../../components/Wrapper'
 
@@ -7,31 +10,60 @@ const Home = () => {
     const [scan,setScan] = useState(false)
     const [modal,setModal] = useState(false)
     const [hehe,setHehe] = useState(false)
-    // const ScanMode = useCallback(async() => {
-    //     if('NDEFReader' in window){
-    //         try {
-    //             const ndf = new window.NDFReader();
-    //             await ndf.scan()
-    //             ndf.onreadingerror = () => {
-    //                 console.log("welp no")
-    //             }
-    //             ndef.onreading = event => {
-    //                 console.log("msg",event)
-    //                 setHehe(event)
-    //             }
-    //         }
-    //         catch(error){
-    //             console.log(error)
-    //         }
-    //     }
-    // })
+    const [data,setData] = useState(false)
+    const Scan = useCallback(async() => {
 
-    // useEffect(() => {
-    //     ScanMode()
-    //     return () => {
-    //         ScanMode();
-    //     }
-    // },[])
+        if ("NDEFReader" in window) {
+            try {
+                const ndef = new window.NDEFReader();
+                await ndef.scan();
+              
+                console.log("Scan started successfully.");
+                // alert("Scan started successfully.")
+                ndef.onreadingerror = () => {
+                    console.log("Cannot read data from the NFC tag. Try another one?");
+                };
+    
+                ndef.onreading = event => {
+                    console.log("NDEF message read.");
+                    onReading(event); //Find function below
+                };
+            } catch (error) {
+                setData(error)
+                console.log(`Error! Scan failed to start: ${error}.`);
+            }
+        } else {
+            console.log("NDEFReader not supported by this browser.");
+            // alert("NDEFReader not supported by this browser.")
+        }
+    },[])
+    
+    const onReading = ({message, serialNumber}) => {
+        console.log(serialNumber);
+        for (const record of message.records) {
+            switch (record.recordType) {
+                case "text":
+                    const textDecoder = new TextDecoder(record.encoding);
+                  
+                    setData(textDecoder.decode(record.data))
+                    // alert(textDecoder.decode(record.data))
+                     updateScan(textDecoder.decode(record.data))
+                    break;
+                case "url":
+                    // TODO: Read URL record with record data.
+                    break;
+                default:
+                    // TODO: Handle other records with record data.
+            }
+        }
+    };
+    
+    // useEffect(()=>{
+    //     Scan()
+    // },[Scan])
+    
+
+
     const handleSubmit = async() => {
         await setScan(true)
         setTimeout(() => {
@@ -39,11 +71,14 @@ const Home = () => {
         }, 2000);
     }
 
-    const updateScan = () => {
-        
-        axios.post('https://languid-jewel-production.up.railway.app/attend/',{
-            "name": "niku",
-            "roll": "12412535",
+    const updateScan = async(data) => {
+        const splitData = data.split(",")
+        const name = splitData[0]
+        const rollNO = splitData[1] 
+       
+        await axios.post('https://languid-jewel-production.up.railway.app/attend/store',{
+            "name": name,
+            "roll": rollNO,
             "status_now": true
           },{
             headers: {
@@ -95,10 +130,12 @@ const Home = () => {
     return(
         <>
         <Wrapper>
+            
+        {/* {data && <p>{data?.includes("")}</p>}  */}
             <div className='text-2xl w-full h-screen mx-auto text-center flex justify-center items-center'>
-
-                
-  <button onClick={() => handleSubmit() } className="relative z-0 -mt-36">
+               
+               
+  <button onClick={() => Scan() } className="relative z-0 -mt-36">
   <svg className={`h-96 w-full ${scan ? 'animate-pulse' : "" } `} viewBox="0 0 24 24">
                     <path fill="none" d="M0 0h24v24H0z">
                     </path>
@@ -115,6 +152,7 @@ const Home = () => {
            {modal &&  <div className='mx-auto'>
             <Modal/>
             </div> }
+           
         </Wrapper>
         </>
     )
